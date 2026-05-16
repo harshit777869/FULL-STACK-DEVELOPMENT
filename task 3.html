@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Collaborative Editor</title>
+
+<style>
+body{font-family:Arial;background:#121212;color:white;text-align:center;}
+.box{width:500px;margin:auto;margin-top:40px;background:#1e1e1e;padding:20px;border-radius:10px;}
+textarea{width:90%;height:150px;}
+.card{background:#2d2d2d;margin-top:10px;padding:10px;border-radius:8px;}
+</style>
+</head>
+<body>
+
+<div class="box">
+
+<h2>Collaborative Document Editor</h2>
+
+<textarea id="doc" oninput="sync()"></textarea>
+
+<div class="card" id="preview"></div>
+
+</div>
+
+<script>
+function sync(){
+preview.innerHTML = "Live Preview: " + doc.value;
+}
+</script>
+
+</body>
+</html>

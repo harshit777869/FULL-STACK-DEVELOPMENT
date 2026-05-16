@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Chat App</title>
+
+<style>
+body{font-family:Arial;background:#121212;color:white;text-align:center;}
+.box{width:400px;margin:auto;margin-top:40px;background:#1e1e1e;padding:20px;border-radius:10px;}
+input,button{padding:10px;width:90%;margin:5px;}
+.chat{background:#2d2d2d;margin:5px;padding:5px;border-radius:5px;text-align:left;}
+</style>
+</head>
+<body>
+
+<div class="box">
+
+<h2>Real-Time Chat</h2>
+
+<div id="msgs"></div>
+
+<input id="msg">
+<button onclick="send()">Send</button>
+
+</div>
+
+<script>
+function send(){
+let text = msg.value;
+
+msgs.innerHTML += `<div class="chat">You: ${text}</div>`;
+
+setTimeout(()=>{
+msgs.innerHTML += `<div class="chat">Server: Message received ✔</div>`;
+},500);
+
+msg.value="";
+}
+</script>
+
+</body>
+</html>

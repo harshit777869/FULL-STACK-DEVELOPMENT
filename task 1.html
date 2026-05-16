@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Weather App</title>
+
+<style>
+body{font-family:Arial;background:#121212;color:white;text-align:center;}
+.box{width:400px;margin:auto;margin-top:50px;background:#1e1e1e;padding:20px;border-radius:10px;}
+button,input{padding:10px;width:80%;margin:5px;}
+.card{background:#2d2d2d;margin:10px;padding:10px;border-radius:8px;}
+</style>
+</head>
+<body>
+
+<div class="box">
+
+<h2>Weather API App</h2>
+
+<input id="city" placeholder="Enter city name">
+<button onclick="getWeather()">Get Weather</button>
+
+<div id="out"></div>
+
+</div>
+
+<script>
+async function getWeather(){
+
+let city = document.getElementById("city").value;
+
+// Fake coordinates map (simple demo)
+let data = {
+"delhi":[28.61,77.20],
+"mumbai":[19.07,72.87],
+"kolkata":[22.57,88.36]
+};
+
+let c = city.toLowerCase();
+
+if(!data[c]){
+out.innerHTML = "City not supported (demo)";
+return;
+}
+
+let lat = data[c][0];
+let lon = data[c][1];
+
+let res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`);
+
+let json = await res.json();
+
+out.innerHTML = `
+<div class="card">Temperature: ${json.current_weather.temperature}°C</div>
+<div class="card">Wind Speed: ${json.current_weather.windspeed}</div>
+`;
+}
+</script>
+
+</body>
+</html>
